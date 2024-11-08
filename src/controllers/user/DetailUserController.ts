@@ -1,18 +1,27 @@
-import {Request, Response} from 'express'
-import { DetailUserService } from '../../services/user/DetailUserService'
+import { Request, Response } from 'express';
+import { DetailUserService } from '../../services/user/DetailUserService';
 
-class DetailuserController{
-  async handle(req: Request, res: Response){
+class DetailUserController {
+    async handle(req: Request, res: Response) {
+        const user_id = req.user_id; // Obtém o user_id do req
 
-    const user_id = req.user_id;
+        const detailUserService = new DetailUserService();
+        
+        // Tenta obter os detalhes do usuário
+        try {
+            const user = await detailUserService.execute(user_id);
 
-    const detailUserService = new DetailUserService();
+            // Verifica se o usuário foi encontrado
+            if (!user) {
+                return res.status(404).json({ message: 'Usuário não encontrado' });
+            }
 
-    const user = await detailUserService.execute(user_id);
-
-    return res.json(user);
-
-  }
+            return res.json(user); // Retorna os detalhes do usuário
+        } catch (error) {
+            console.error('Erro ao obter detalhes do usuário:', error);
+            return res.status(500).json({ message: 'Erro ao obter detalhes do usuário' });
+        }
+    }
 }
 
-export { DetailuserController  }
+export { DetailUserController }; // Exporta o controlador
