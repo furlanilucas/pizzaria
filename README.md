@@ -1,4 +1,4 @@
-Esse é somente a parte de Backend do projeto - Front End está sendo desenvolvido
+
 
 Este projeto é uma API RESTful desenvolvida com Node.js e Express, usando o Prisma como ORM para interagir com um banco de dados PostgreSQL. A aplicação fornece funcionalidades para gerenciar usuários, categorias de produtos (como pizzas), pedidos e itens associados, seguindo boas práticas de desenvolvimento para garantir escalabilidade e facilidade de manutenção.
 Funcionalidades
